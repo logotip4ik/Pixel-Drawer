@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { useState, useActions } from '@u3u/vue-hooks';
+import { useState, useActions, useMutations } from '@u3u/vue-hooks';
 
 import Box from '@/components/Box.vue';
 
@@ -23,8 +23,9 @@ export default {
   },
   setup() {
     const { grid, brushColor } = useState('grid', ['grid', 'brushColor']);
+    const { fillBox } = useMutations('grid', ['fillBox']);
 
-    const { initGrid, fillBox } = useActions('grid', ['initGrid', 'fillBox']);
+    const { initGrid } = useActions('grid', ['initGrid']);
 
     initGrid();
 

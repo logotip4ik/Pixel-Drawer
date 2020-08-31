@@ -8,7 +8,7 @@
     transition="slide-x-reverse-transition"
   >
     <template v-slot:activator>
-      <v-btn fab v-model="fab">
+      <v-btn fab v-model="fab" :dark="darkMode">
         <v-icon>mdi-brush</v-icon>
       </v-btn>
     </template>
@@ -22,7 +22,7 @@
 
 <script>
 import { ref } from '@vue/composition-api';
-import { useMutations } from '@u3u/vue-hooks';
+import { useMutations, useState } from '@u3u/vue-hooks';
 
 export default {
   name: 'ColorPicker',
@@ -30,9 +30,11 @@ export default {
     const fab = ref(false);
 
     const { changeBrush } = useMutations('grid', ['changeBrush']);
+    const { darkMode } = useState('grid', ['darkMode']);
 
     return {
       fab,
+      darkMode,
       changeBrush,
     };
   },
