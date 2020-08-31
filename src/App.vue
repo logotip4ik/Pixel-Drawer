@@ -1,16 +1,8 @@
 <template>
   <v-app>
     <v-main class="mx-auto">
-      <h1 class="display-1 mb-4">Pixel Drawer</h1>
-      <v-row v-for="(row, i) in grid" :key="i" no-gutters>
-        <v-col v-for="(col, j) in row" :key="j">
-          <Box
-            :color="col.currColor"
-            @click.native="fillBox({pos: col.pos, color: brushColor})"
-            @click.right.native="fillBox({pos: col.pos, color: 'transparent'})"
-          />
-        </v-col>
-      </v-row>
+      <Navbar/>
+      <Grid class="mt-4"/>
       <ColorPicker/>
       <UndoButton/>
     </v-main>
@@ -18,33 +10,29 @@
 </template>
 
 <script>
-import { useState, useActions, useMutations } from '@u3u/vue-hooks';
+import { useState } from '@u3u/vue-hooks';
 
-import Box from '@/components/Box.vue';
+import Grid from '@/components/Grid.vue';
+import Navbar from '@/components/Navbar.vue';
 import UndoButton from '@/components/UndoButton.vue';
 import ColorPicker from '@/components/ColorPicker.vue';
 
 export default {
   name: 'App',
   components: {
-    Box,
+    Grid,
+    Navbar,
     UndoButton,
     ColorPicker,
   },
+  watch: {
+    history: (val) => console.log(val),
+  },
   setup() {
-    const { grid, brushColor } = useState('grid', ['grid', 'brushColor']);
-
-    const { fillBox } = useMutations('grid', ['fillBox']);
-
-    const { initGrid } = useActions('grid', ['initGrid']);
-
-    initGrid();
+    const { history } = useState('grid', ['history']);
 
     return {
-      grid,
-      fillBox,
-      initGrid,
-      brushColor,
+      history
     };
   },
 };

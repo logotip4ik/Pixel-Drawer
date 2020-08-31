@@ -1,2 +1,10 @@
 # Pixel-Drawer
-Created with CodeSandbox
+
+## Instantiation:
+```bash
+npm i
+```
+## Usage:
+```bash
+npm run serve
+```

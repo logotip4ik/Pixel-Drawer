@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import { useMutations } from '@u3u/vue-hooks';
+import { useActions } from '@u3u/vue-hooks';
 
 export default {
   name: 'UndoButton',
   setup() {
-    const { undo } = useMutations('grid', ['undo']);
+    const { undo } = useActions('grid', ['undo']);
 
     return {
       undo,
