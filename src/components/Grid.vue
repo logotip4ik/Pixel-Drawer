@@ -5,7 +5,7 @@
         <Box
           :color="col.currColor"
           @click.native="fillBox({pos: col.pos, color: brushColor, grid})"
-          @click.right.native="fillBox({pos: col.pos, color: 'transparent', grid})" />
+          @click.right.native.prevent="fillBox({pos: col.pos, color: 'transparent', grid})" />
       </v-col>
     </v-row>
   </div>
@@ -21,8 +21,21 @@ export default {
   components: {
     Box,
   },
+  watch: {
+    gridWidth() {
+      this.initGrid();
+    },
+    gridHeight() {
+      this.initGrid();
+    },
+  },
   setup() {
-    const { grid, brushColor } = useState('grid', ['grid', 'brushColor']);
+    const { grid, brushColor, gridHeight, gridWidth } = useState('grid', [
+      'grid',
+      'brushColor',
+      'gridHeight',
+      'gridWidth',
+    ]);
     const { fillBox } = useMutations('grid', ['fillBox']);
 
     const { initGrid } = useActions('grid', ['initGrid']);
@@ -33,6 +46,8 @@ export default {
       grid,
       fillBox,
       initGrid,
+      gridWidth,
+      gridHeight,
       brushColor,
     };
   },

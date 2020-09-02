@@ -2,8 +2,8 @@
   <v-speed-dial
     v-model="fab"
     fixed bottom left
-    direction="right"
-    transition="slide-y-reverse-transition">
+    direction="top"
+    transition="slide-x-transition">
     <template v-slot:activator>
       <v-btn v-model="fab" :dark="darkMode" fab>
         <v-icon>mdi-dots-horizontal</v-icon>
@@ -11,6 +11,7 @@
     </template>
     <ClearButton/>
     <DarkModeButton/>
+    <!-- <ChangeSizeGrid/> -->
   </v-speed-dial>
 </template>
 
